@@ -4,6 +4,8 @@ $(document).ready(function () {
   let session_length = parseInt($('.session-length').text()) * 60;
   let break_length = parseInt($('.break-length').text()) * 60;
   let status = 'stop'; // [session, break, stop]
+  let beginInterval = null,
+      endInterval = null;
 
   // break-minus
   $('.break-minus').click(function () {
@@ -59,10 +61,13 @@ $(document).ready(function () {
 
   // begin
   $('.begin').click(function () {
+    if (status !== 'stop')
+      return;
+
     // session
     status = 'session';
     $('.timer').addClass('timer-session');
-    let timeinterval = setInterval(function () {
+    beginInterval = setInterval(function () {
       if (status === 'session') {
         session_length -= 1;
         console.log(session_length);
@@ -89,7 +94,7 @@ $(document).ready(function () {
     // break
     let n = 0;
 
-    setInterval(function () {
+    endInterval = setInterval(function () {
       if (status === 'break') {
         ++n;
         let minute = Math.floor(n / 60);
@@ -119,6 +124,8 @@ $(document).ready(function () {
     $('.timer').text('25:00');
     session_length = parseInt($('.session-length').text()) * 60;
     break_length = parseInt($('.break-length').text()) * 60;
+    clearInterval(beginInterval);
+    clearInterval(endInterval);
 
     $('.timer').removeClass('timer-session');
     $('.timer').removeClass('timer-break');
