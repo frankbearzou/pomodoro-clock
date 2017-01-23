@@ -1,0 +1,25 @@
+{
+  "name": "pomodoro-clock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "cp index.* build/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankbearzou/pomodoro-clock.git"
+  },
+  "author": "Frank Zou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/frankbearzou/pomodoro-clock/issues"
+  },
+  "homepage": "https://frankbearzou.github.io/pomodoro-clock",
+  "devDependencies": {
+    "gh-pages": "^0.12.0"
+  }
+}
